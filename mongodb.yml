@@ -1,0 +1,38 @@
+- name: setup mongoDb
+  hosts: all
+  tasks:
+    - name: Copy mongodb repo file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/yum.repos.d/mongo.repo
+    - name: Installing MongoDB
+      ansible.builtin.yum:
+        name: mongodb-org
+        state: latest
+
+    - name: Update Mongodb listen address
+      ansible.builtin.replace:
+        path: /etc/mongod.conf
+        regexp: '127.0.0.1'
+        replace: '0.0.0.0'
+
+    - name: start Mongodb service
+      ansible.builtin.service:
+        name: mongodb
+        state: restarted
+        enabled: yes
+
+#    echo -e "\e[31m Copying mongo repo to files of repos\e[0m"
+#    cp /home/centos/Roboshop-shell/mongodb.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
+#
+#    echo -e "\e[31mInstalling mongodb\e[0m"
+#    yum install mongodb-org -y &>>/tmp/roboshop.log
+#
+#
+#    echo -e "\e[31mUpdate listen address\e[0m"
+#
+#    sed -i  -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+#
+#    echo -e "\e[31m Enabling and restarting mongodb\e[0m"
+#    systemctl enable mongod &>>/tmp/roboshop.log
+#    systemctl restart mongod &>>/tmp/roboshop.log
