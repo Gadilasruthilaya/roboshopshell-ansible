@@ -5,9 +5,9 @@
     dest: /etc/systemd/system/{{ component }}.service
 
 
-- name: start {{ component }} Nginx
+- name: start {{ component }} service
   ansible.builtin.service:
-    name: " {{ component }}.service "
+    name: "{{ component }}.service"
     state: restarted
     enabled: yes
     daemon_reload: yes
