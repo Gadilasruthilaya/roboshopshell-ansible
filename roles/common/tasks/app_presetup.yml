@@ -1,0 +1,62 @@
+- name: Add application user
+  ansible.builtin.user:
+    name: roboshop
+
+
+- name: Remove application directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: create application directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: Download and extract frontend content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
+    dest: /app
+    remote_src: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#echo -e " ${color} Add application user ${no_color}"
+#id roboshop &>>${file_path}
+#if [ $? -eq 1 ]; then
+#useradd roboshop &>>${file_path}
+#fi
+#
+#start_check $?
+#
+#echo -e " ${color} Creat application directory ${no_color}"
+#rm -rf $app_path &>>${file_path}
+#mkdir $app_path
+#start_check $?
+#
+#echo -e " ${color} Download application content  ${no_color}"
+#curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${file_path}
+#cd $app_path
+#start_check $?
+#
+#echo -e "${color}  Extract application Conetent ${no_color}"
+#cd $app_path &>>${file_path}
+#unzip /tmp/${component}.zip &>>${file_path}
+#start_check $?
