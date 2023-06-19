@@ -4,6 +4,6 @@
   vars:
     component: catalogue
   tasks:
-    -name: load NodeJs
-    ansible.builtin.include_tasks:
-      file: nodejs.yml
+    - name: load NodeJs
+      ansible.builtin.include_tasks:
+        file: nodejs.yml
