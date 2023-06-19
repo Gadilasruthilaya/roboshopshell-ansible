@@ -1,8 +1,0 @@
-- name: Setup frontend
-  hosts: all
-  become: yes # while running your code you need be root user. so you use sudo in shell scrip here we use become to run as root
-  tasks:
-    - name: Installing nginx server
-      ansible.builtin.yum:
-        name: nginx
-        state: latest
