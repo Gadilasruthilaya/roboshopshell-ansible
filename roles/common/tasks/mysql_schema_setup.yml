@@ -1,5 +1,7 @@
-- name: Install my sql
-  ansible.builtin.shell: yum install mysql -y
+- name: Install my sql client
+  ansible.builtin.yum:
+    name: mysql
+    status: installed
 
 - name: Install my sql
   ansible.builtin.shell: mysql -h mysql-dev.devopspractice.store -uroot -pRoboShop@1 </app/schema/{{ component }}.sql
