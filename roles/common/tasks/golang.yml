@@ -1,0 +1,35 @@
+- name: Install golang
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: App pre requisites
+  ansible.builtin.import_tasks:
+    file: app_presetup.yml
+
+- name: Download dependencies and build software
+  ansible.builtin.shell: go mod init dispatch; go get; go build
+  args:
+    chdir: /app
+
+- name: Systemd setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
