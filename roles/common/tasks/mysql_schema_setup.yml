@@ -3,7 +3,7 @@
     name: mysql
     state: installed
 
-- name: Install my sql
+- name: load schema
   ansible.builtin.shell: mysql -h mysql-dev.devopspractice.store -uroot -pRoboShop@1 </app/schema/{{ component }}.sql
 
 
