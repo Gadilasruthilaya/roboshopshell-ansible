@@ -11,8 +11,8 @@
     state: installed
 
 
-- - name: start service rabbitmq
-    ansible.builtin.systmed:
+- name: start service rabbitmq
+  ansible.builtin.systmed:
       name: rabbitmq
       state: restarted
       enabled: yes
